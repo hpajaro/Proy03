@@ -7,20 +7,17 @@ namespace Interfaces
 {
     public class PaymentManager
     {
-        private readonly CreditCardPaymment creditCard;
-        private readonly DebitCardPaymment debitCard;
+        private readonly IPaymentMode _paymentMode;
 
-        public PaymentManager(CreditCardPaymment creditCard, DebitCardPaymment debitCard)
+        public PaymentManager(IPaymentMode paymentMode)
         {
-            this.creditCard = creditCard;
-            this.debitCard = debitCard;
-        }
 
+            _paymentMode = paymentMode;
+
+        }
         public void ManagePayment()
         {
-            creditCard.MakePayment();
-            debitCard.MakePayment();
+            _paymentMode.MakePayment();
         }
-
     }
 }
